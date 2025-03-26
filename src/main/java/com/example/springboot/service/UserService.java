@@ -1,38 +1,15 @@
 package com.example.springboot.service;
 
-import com.example.springboot.dao.UserRepository;
 import com.example.springboot.model.User;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
-public class UserService {
+public interface UserService {
+    void addUser(User user);
 
-    private final UserRepository userRepository;
+    void deleteUser(Long id);
 
+    List<User> getUsers();
 
-    public UserService(UserRepository userRepository) {
-
-        this.userRepository = userRepository;
-    }
-
-
-    public void addUser(User user) {
-        userRepository.save(user);
-    }
-
-    public void deleteUser(Long id) {
-        userRepository.deleteById(id);
-    }
-
-
-    public List<User> getUsers() {
-        return userRepository.findAll();
-    }
-
-
-    public User getUserById(Long id) {
-        return userRepository.findById(id).orElse(null);
-    }
+    User getUserById(Long id);
 }
